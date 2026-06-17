@@ -1,0 +1,246 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+:root {
+    --gradient: linear-gradient(135deg, #111418, #0d6efd);
+    --bg-page: #f4f6f9;
+    --surface: #ffffff;
+    --text-main: #212529;
+    --text-muted: #6c757d;
+    --accent: #0d6efd;
+    --duration: 0.6s;
+    --easing-panel: cubic-bezier(0.65, 0, 0.35, 1);
+    --easing: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+body {
+    background-color: var(--bg-page);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.card {
+    position: relative;
+    width: 760px;
+    height: 520px;
+    overflow: hidden;
+    border-radius: 20px;
+    background: var(--surface);
+    box-shadow: 0 20px 60px rgba(17, 20, 24, 0.15);
+    display: flex;
+}
+
+.toggle-trigger { 
+	display: none;
+}
+
+.card-bg {
+    position: absolute;
+    inset: 0 auto 0 0;
+    z-index: 5;
+    width: 50%;
+    background: var(--gradient);
+    transition: transform var(--duration) var(--easing-panel);
+}
+
+.toggle-trigger:checked ~ .card-bg { 
+	transform: translateX(100%); 
+}
+
+.hero, .form-panel {
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 40px;
+    transition: transform var(--duration) var(--easing-panel), opacity var(--duration) var(--easing-panel), visibility var(--duration) var(--easing-panel);
+}
+
+.hero.signup-hero { 
+	left: 0; 
+	z-index: 6; 
+	opacity: 1; 
+	visibility: visible; 
+}
+
+.form-panel.signup-form { 
+	left: 0; 
+	z-index: 1; 
+	opacity: 0; 
+	visibility: hidden; 
+}
+
+.hero.signin-hero { 
+	left: 50%; 
+	z-index: 1; 
+	opacity: 0; 
+	visibility: hidden; 
+}
+
+.form-panel.signin-form { 
+	left: 50%; 
+	z-index: 6;
+	opacity: 1; 
+	visibility: visible; 
+}
+
+.toggle-trigger:checked ~ .hero.signup-hero { 
+	opacity: 0; 
+	visibility: hidden; 
+	transform: translateX(-30%); 
+}
+
+.toggle-trigger:checked ~ .form-panel.signup-form { 
+	opacity: 1; 
+	visibility: visible; 
+	transform: translateX(0); 
+	z-index: 6; 
+}
+
+.toggle-trigger:checked ~ .hero.signin-hero { 
+	opacity: 1; 
+	visibility: visible; 
+	transform: translateX(0); z-index: 6; 
+}
+
+.toggle-trigger:checked ~ .form-panel.signin-form { 
+	opacity: 0; 
+	visibility: hidden; 
+	transform: translateX(30%); 
+}
+
+h2 { 
+	font-size: 26px; 
+	font-weight: 700; 
+	margin-bottom: 12px; 
+	color: var(--text-main); 
+}
+
+.hero h2 { 
+	color: #ffffff; 
+}
+
+p { 
+	font-size: 13px; 
+	line-height: 1.5; 
+	text-align: center; 
+	color: var(--text-muted); 
+	margin-bottom: 20px; 
+}
+
+.hero p { 
+	color: rgba(255, 255, 255, 0.8); 
+}
+
+.switch-label {
+    padding: 12px 35px;
+    border: 1.5px solid rgba(255, 255, 255, 0.7);
+    border-radius: 30px;
+    background: transparent;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.25s var(--easing);
+}
+
+.switch-label:hover { 
+	background: rgba(255, 255, 255, 0.1); 
+}
+
+.input-wrapper { 
+	width: 100%; 
+	margin-bottom: 15px; 
+	}
+
+input {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid #dee2e6;
+    background: #f8f9fa;
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--text-main);
+    transition: all 0.2s ease;
+}
+
+input:focus { 
+	outline: none; 
+	border-color: var(--accent); 
+	background: #fff; 
+}
+
+.btn-submit {
+    width: 100%; 
+    padding: 14px; 
+    background: var(--accent); 
+    color: #ffffff;
+    border: none; 
+    border-radius: 8px;
+    font-size: 15px; 
+    font-weight: bold;
+    cursor: pointer; 
+    transition: opacity 0.2s; 
+    margin-top: 10px;
+}
+
+.btn-submit:hover { 
+	opacity: 0.9; 
+}
+
+
+.role-switch-container { 
+	display: flex; 
+	background: #f1f2ff; 
+	padding: 4px; 
+	border-radius: 30px; 
+	margin-bottom: 20px; 
+	width: 100%; 
+}
+
+.role-btn { 
+	flex: 1; 
+	border: none; 
+	background: transparent; 
+	padding: 10px; 
+	font-size: 12px; 
+	font-weight: bold;
+	text-transform: uppercase; 
+	color: var(--text-muted); 
+	border-radius: 25px; 
+	cursor: pointer; 
+}
+
+.role-btn.active-role { 
+	background: #ffffff; 
+	color: var(--accent); 
+	box-shadow: 0 4px 10px rgba(0,0,0,0.05); 
+}
+
+/* --- Enterprise Form Validations CSS Rules --- */
+.required-field::after { 
+	content: " *"; color: #dc3545; 
+	font-weight: bold; margin-left: 2px; 
+}
+
+input:required:invalid { 
+	border-bottom: 2px solid #dc3545; 
+}
+
+.caution-text { 
+	color: #dc3545; 
+	font-size: 11px; 
+	font-weight: 600; 
+	display: block; 
+	margin-bottom: 12px; 
+}
